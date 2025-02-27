@@ -1,1 +1,24 @@
 DEVELOPMENT_PLAN.md
+
+# Node modules
+node_modules/
+
+# Build files
+dist/
+build/
+
+# IDE files
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Extension packaging
+*.zip
+*.crx
+*.pem
+
+# Tesseract worker files (if downloaded locally)
+*.traineddata

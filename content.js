@@ -178,6 +178,9 @@ function processSelectedArea(left, top, width, height) {
     0, 0, scaledWidth, scaledHeight
   );
   
+  // Add image preprocessing for better OCR results
+  croppedCanvas = preprocessImage(croppedCanvas);
+  
   // Load Tesseract.js for OCR
   loadTesseract()
     .then(() => {
@@ -188,24 +191,21 @@ function processSelectedArea(left, top, width, height) {
       const imageData = croppedCanvas.toDataURL('image/png');
       
       // Perform OCR on the cropped image
-      Tesseract.recognize(
-        imageData,
-        'eng',
-        { logger: m => console.log(m) }
-      ).then(({ data: { text } }) => {
-        console.log("Extracted text:", text);
-        
-        // Copy the text to clipboard
-        copyToClipboard(text);
-        
-        // Hide loading indicator and show success message
-        hideLoadingIndicator();
-        showSuccessMessage(text);
-      }).catch(err => {
-        console.error("OCR error:", err);
-        hideLoadingIndicator();
-        showErrorMessage("Failed to extract text. Please try again.");
-      });
+      performOCR(imageData)
+        .then(({ data: { text } }) => {
+          console.log("Extracted text:", text);
+          
+          // Copy the text to clipboard
+          copyToClipboard(text);
+          
+          // Hide loading indicator and show success message
+          hideLoadingIndicator();
+          showSuccessMessage(text);
+        }).catch(err => {
+          console.error("OCR error:", err);
+          hideLoadingIndicator();
+          showErrorMessage("Failed to extract text. Please try again.");
+        });
     })
     .catch(err => {
       console.error("Failed to load Tesseract:", err);
@@ -330,6 +330,39 @@ function showErrorMessage(errorText) {
   document.getElementById('yt-text-selector-close-error').addEventListener('click', () => {
     message.remove();
   });
+}
+
+// Add image preprocessing for better OCR results
+function preprocessImage(canvas) {
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+  
+  // Increase contrast
+  for (let i = 0; i < data.length; i += 4) {
+    // Convert to grayscale
+    const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+    
+    // Apply threshold for black and white
+    const threshold = 128;
+    const value = avg > threshold ? 255 : 0;
+    
+    data[i] = value;     // R
+    data[i + 1] = value; // G
+    data[i + 2] = value; // B
+  }
+  
+  ctx.putImageData(imageData, 0, 0);
+  return canvas;
+}
+
+// Add language selection for OCR
+function performOCR(imageData, language = 'eng') {
+  return Tesseract.recognize(
+    imageData,
+    language,
+    { logger: m => console.log(m) }
+  );
 }
 
 // Start the extension
