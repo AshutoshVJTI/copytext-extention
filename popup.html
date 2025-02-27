@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Text Selector</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 18px;
+      margin-top: 0;
+      color: #cc0000;
+    }
+    .instructions {
+      margin-bottom: 15px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .step {
+      margin-bottom: 8px;
+    }
+    .step-number {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: #cc0000;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #666;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>YouTube Text Selector</h1>
+  
+  <div class="instructions">
+    <div class="step">
+      <span class="step-number">1</span>
+      Pause the YouTube video at the frame containing text
+    </div>
+    <div class="step">
+      <span class="step-number">2</span>
+      Click and drag to select the area with text
+    </div>
+    <div class="step">
+      <span class="step-number">3</span>
+      The text will be automatically extracted and copied to your clipboard
+    </div>
+  </div>
+  
+  <div class="footer">
+    Text is extracted using OCR technology. Results may vary depending on text clarity.
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html> 
