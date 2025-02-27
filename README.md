@@ -17,7 +17,7 @@ The YouTube Text Selector extension allows users to select and extract text from
 
 1. **Clone the Repository:**
    ```
-   git clone <repository-url>
+   git clone https://github.com/AshutoshVJTI/copytext-extention.git
    cd copytext-extention
    ```
 2. **Install Dependencies:**
