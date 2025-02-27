@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Text Selector",
+  "version": "1.0",
+  "description": "Select and copy text from YouTube video frames when paused",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon128.png"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "contentScript.js"
+      ],
+      "css": [
+        "styles.css"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "worker.min.js",
+        "tesseract-core.wasm",
+        "tesseract-core.wasm.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "commands": {
+    "start-crop": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+O",
+        "mac": "Command+Shift+O"
+      },
+      "description": "Start text extraction"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "offscreen"
+  ]
+}

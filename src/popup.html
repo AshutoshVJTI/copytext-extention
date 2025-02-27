@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Text Extractor</title>
+  <style>
+    :root {
+      --primary: #20e0e0;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --bg-dark: rgba(10, 12, 15, 0.85);
+      --gray: #94a3b8;
+    }
+    
+    body {
+      width: 320px;
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.5;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+    
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-dark);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      color: var(--dark);
+      font-weight: 600;
+    }
+    
+    .steps {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      margin-bottom: 16px;
+    }
+    
+    .step {
+      display: flex;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+    
+    .step:last-child {
+      margin-bottom: 0;
+    }
+    
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background-color: var(--bg-dark);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: 50%;
+      margin-right: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .step-text {
+      font-size: 14px;
+      color: var(--dark);
+    }
+    
+    .shortcut {
+      background: rgba(10, 12, 15, 0.05);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .key-combo {
+      display: flex;
+      gap: 4px;
+    }
+    
+    .key {
+      background: var(--bg-dark);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: 4px;
+      padding: 3px 6px;
+      font-size: 12px;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .footer {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--gray);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">T</div>
+    <h1>YouTube Text Extractor</h1>
+  </div>
+  
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-text">Pause the video at the frame with text</div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-text">Click the <strong>T</strong> button in the top-left corner of the video</div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-text">Select the area containing text</div>
+    </div>
+  </div>
+  
+  <div class="shortcut">
+    <span>Keyboard shortcut:</span>
+    <div class="key-combo">
+      <span class="key" id="modifier-key">Ctrl</span>
+      <span class="key">Shift</span>
+      <span class="key">O</span>
+    </div>
+  </div>
+  
+  <div class="footer">
+    Text is automatically copied to your clipboard
+  </div>
+  
+  <script>
+    // Detect if user is on Mac and update the modifier key
+    document.addEventListener('DOMContentLoaded', function() {
+      const modifierKey = document.getElementById('modifier-key');
+      if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
+        modifierKey.textContent = '⌘';
+      } else {
+        modifierKey.textContent = 'Ctrl';
+      }
+    });
+  </script>
+</body>
+</html> 

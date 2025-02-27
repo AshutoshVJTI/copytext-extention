@@ -1,0 +1,242 @@
+.extract-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 25, 40, 0.78);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    animation: appear 0.25s ease-out forwards;
+  }
+  
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .extract-container {
+    background: #ffffff;
+    padding: 2.2rem;
+    border-radius: 10px;
+    max-width: 82vw;
+    width: 92%;
+    box-shadow: 0 18px 28px -6px rgba(5, 10, 15, 0.12),
+      0 12px 12px -4px rgba(5, 10, 15, 0.06);
+    transform: translateY(24px);
+    animation: rise 0.32s ease-out forwards;
+    height: 62vh;
+  }
+  
+  @keyframes rise {
+    0% {
+      transform: translateY(24px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .extract-title {
+    margin: 0 0 1.6rem 0;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #243040;
+    line-height: 1.25;
+  }
+  
+  .extract-info {
+    margin: 0.8rem 0;
+    color: #5a6578;
+    font-size: 1.45rem;
+    line-height: 1.45;
+  }
+  
+  .extract-alert {
+    color: #c4a810;
+    background: #fffed0;
+    padding: 0.8rem 1.1rem;
+    border-radius: 8px;
+    border-left: 4px solid #d8c020;
+    margin: 1.1rem 0;
+  }
+  
+  .extract-result {
+    width: 100%;
+    min-height: 160px;
+    margin-top: 1.1rem;
+    padding: 0.8rem;
+    border: 1px solid #e0e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1.45rem;
+    line-height: 1.45;
+    resize: vertical;
+    transition: border-color 0.18s ease;
+  }
+  
+  .extract-result:focus {
+    outline: none;
+    border-color: #4080f0;
+    box-shadow: 0 0 0 3px rgba(64, 128, 240, 0.12);
+  }
+  
+  #selection-box {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9998;
+  }
+  
+  .extract-overlay * {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, sans-serif;
+  }
+  
+  #text-extract-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(10, 12, 15, 0.85);
+    color: #20e0e0;
+    border: 2px solid #20e0e0;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.22s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  }
+  
+  #text-extract-btn:hover {
+    background: rgba(10, 12, 15, 0.92);
+    transform: scale(1.08);
+  }
+  
+  #text-extract-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: #20e0e0;
+  }
+  
+  .extract-toast {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 12, 15, 0.85);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 6px;
+    font-size: 15px;
+    z-index: 10000;
+    transition: opacity 0.45s;
+  }
+  
+  .extract-toast.hide {
+    opacity: 0;
+  }
+  
+  /* Loading indicator styles */
+  .extract-loading {
+    position: fixed;
+    background: rgba(20, 25, 40, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    border-radius: 4px;
+    /* Position and dimensions are set dynamically in JavaScript */
+  }
+  
+  .extract-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #20e0e0;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 16px;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .extract-loading-text {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Success notification styles */
+  .extract-success-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px 16px;
+    z-index: 10001;
+    animation: slide-in 0.3s ease-out forwards;
+    backdrop-filter: blur(4px);
+  }
+  
+  @keyframes slide-in {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .extract-success-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .extract-success-icon {
+    color: #10b981;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .extract-success-title {
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+  }
+  
+  .extract-fade-out {
+    animation: fade-out 0.3s forwards;
+  }
+  
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+  
