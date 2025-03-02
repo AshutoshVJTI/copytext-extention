@@ -55,7 +55,6 @@
   },
   "permissions": [
     "activeTab",
-    "scripting",
     "offscreen"
   ]
 }
